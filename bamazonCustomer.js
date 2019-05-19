@@ -9,19 +9,7 @@ var connection = mysql.createConnection({
     password: "root",
     database: "bamazon"
 });
-// *************Connects and displays items*************
-// connection.connect(function(err) {
-//     if (err) throw err;
-//     showInventory();
-//   });
 
-//   function showInventory() {
-//     connection.query("SELECT * FROM products", function(err, res) {
-//       if (err) throw err;
-//       console.log(res);
-//     });
-//   }
-// *************Connects and displays items*************
 
 
 connection.connect(function (err) {
@@ -63,16 +51,31 @@ function showInventory() {
                         // console.log(chosenItem);
                     }
                 }
-                evaluateStock();
+                    evaluateStock();
 
                 function evaluateStock() {
 
-                    if (chosenItem.stock_quantity > parseInt(answer.buy)) {
-                        console.log('Enough in stock');
-                    } else {
-                        console.log('Not enough :(')
-                    }
+                if (chosenItem.stock_quantity > parseInt(answer.buy)) {
+
+                    //  Starting changes trying to update database*******
+
+                        // connection.connect(function(error) {
+                        //     if(error) throw error;
+
+                        //     var quantUpdate = 'UPDATE products SET ? WHERE ?';
+                        //         connection.query(quantUpdate, function(error, result){
+                        //             if(error) throw error;
+                        //             console.log(result.newData + stock_quantity + 
+                        //                 ?)
+                        // }
+
+                    // End changes****************
+                    
+                    console.log('\n\nEnough in stock\n');
+                } else {
+                    console.log('\n\nNot enough :(\n')
                 }
+            } showInventory();
 
             }).catch(function (error) {
                 console.log(error)
