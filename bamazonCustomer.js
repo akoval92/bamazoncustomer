@@ -57,11 +57,24 @@ function showInventory() {
                 var chosenItem;
                 for (var i = 0; i < results.length; i++) {
                     if (results[i].item_name === answer.choice) {
-                        chosenItem = results[i].stock_quantity;
+                        chosenItem = results[i];
+                        // chosenItem = results[i].stock_quantity;
 
-                        console.log(chosenItem);
+                        // console.log(chosenItem);
                     }
                 }
+
+                if (chosenItem.stock_quantity > parseInt(answer.buy)) {
+                    console.log('Enough in stock');
+                } else {
+                    console.log('Not enough :(')
+                }
+
+
+
+
+
+
             }).catch(function (error) {
                 console.log(error)
             });
