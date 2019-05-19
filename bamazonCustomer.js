@@ -63,17 +63,16 @@ function showInventory() {
                         // console.log(chosenItem);
                     }
                 }
+                evaluateStock();
 
-                if (chosenItem.stock_quantity > parseInt(answer.buy)) {
-                    console.log('Enough in stock');
-                } else {
-                    console.log('Not enough :(')
+                function evaluateStock() {
+
+                    if (chosenItem.stock_quantity > parseInt(answer.buy)) {
+                        console.log('Enough in stock');
+                    } else {
+                        console.log('Not enough :(')
+                    }
                 }
-
-
-
-
-
 
             }).catch(function (error) {
                 console.log(error)
