@@ -28,26 +28,21 @@ connection.connect(function (err) {
     if (err) throw err;
     showInventory(); //start
 });
-
-
 function showInventory() {
-
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
-
         inquirer
             .prompt([
                 {
                     name: "storeGoods",
                     type: "rawlist",
                     choices: function () {
-
-                        var pushItems = [];
+                        var showItems = [];
 
                         for (var i = 0; i < results.length; i++) {
-                            pushItems.push(results[i].product_name);
+                            showItems.push(results[i].product_name);
                         }
-                        return pushItems;
+                        return showItems;
                     },
                     message: "What is the id of the item you would like to purchase?"
                 },
@@ -58,15 +53,19 @@ function showInventory() {
                 }
             ])
             .then(function (answer) {
-                var selectedItem;
+
+                var chosenItem;
                 for (var i = 0; i < results.length; i++) {
-                    if (results[i].product_name === answer.choice) {
-                        selectedItem = results[i];
+                    if (results[i].item_name === answer.choice) {
+                        chosenItem = results[i].stock_quantity;
+
+                        console.log(chosenItem);
                     }
                 }
-
             }).catch(function (error) {
                 console.log(error)
             });
     });
 }
+
+
